@@ -10,7 +10,7 @@ namespace GenericPaymentModule.Models
     /// </summary>
     public class StripePaymentRequest 
     {
-        public decimal Amount;
+        public int Amount;
         public string Currency;
         public decimal ApplicationFee;
         public bool Capture;

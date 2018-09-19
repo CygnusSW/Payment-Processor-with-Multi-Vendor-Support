@@ -1,4 +1,6 @@
-﻿using GenericPaymentModule.Models;
+﻿using GenericPaymentModule.MockedVendors;
+using GenericPaymentModule.Models;
+using GenericPaymentModule.Models.Payments.Stripe;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace GenericPaymentModule.Services
 {
-    class StripePaymentService //: IPaymntService
+    public class StripePaymentService //: IPaymntService
     {
-        public Task<PaymentResponse> MakePayment(StripePaymentRequest payment)
+        private readonly MockStripeSystem _stripeSystem;
+        public StripePaymentService(MockStripeSystem stripeSystem)
         {
-            throw new NotImplementedException();
+            _stripeSystem = stripeSystem;
+        }
+
+        public async Task<StripePaymentResponse> MakePayment(StripePaymentRequest payment)
+        {
+            var res = await _stripeSystem.CreateCharge(payment);
+            return res;
         }
     }
 }

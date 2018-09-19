@@ -15,7 +15,7 @@ namespace GenericPaymentModule.Models.Payments.Stripe
         public string balance_transaction;
         public bool captured;
         public DateTime created;
-        public decimal currency;
+        public string currency;
         public string customer;
         public string description;
         public string destination;
